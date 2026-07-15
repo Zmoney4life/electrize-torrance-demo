@@ -22,21 +22,28 @@
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
 
-  function optionButton(label, selected) {
+  function optionButton(label, selected, emoji) {
     var cls = OPT + (selected
       ? " border-[#2563eb] bg-blue-50 text-[#2563eb]"
       : " border-gray-200 bg-white text-gray-800 hover:border-blue-300");
     var ring = "w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 " +
       (selected ? "border-[#2563eb]" : "border-gray-400");
     var dot = selected ? '<span class="w-2.5 h-2.5 rounded-full bg-[#2563eb]"></span>' : "";
+    var left = emoji
+      ? '<span class="flex items-center gap-3"><span class="text-lg" aria-hidden="true">' + emoji + '</span><span>' + esc(label) + '</span></span>'
+      : '<span>' + esc(label) + '</span>';
     return '<button type="button" data-opt="' + esc(label) + '" class="' + cls + '">' +
-      '<span>' + esc(label) + '</span><span class="' + ring + '">' + dot + '</span></button>';
+      left + '<span class="' + ring + '">' + dot + '</span></button>';
   }
 
   function questionStep(question, field, opts) {
     var html = '<div class="flex flex-col gap-2 fade-in">' +
       '<p class="text-sm font-bold text-[#1a1a1a]">' + esc(question) + '</p>';
-    for (var i = 0; i < opts.length; i++) html += optionButton(opts[i], state[field] === opts[i]);
+    for (var i = 0; i < opts.length; i++) {
+      var o = opts[i];
+      if (typeof o === "string") html += optionButton(o, state[field] === o);
+      else html += optionButton(o.label, state[field] === o.label, o.emoji);
+    }
     return html + '</div>';
   }
 
@@ -71,8 +78,14 @@
 
   function stepBody() {
     switch (state.step) {
-      case 1: return questionStep("What type of electrical work do you need?", "serviceType",
-        ["Panel Upgrade", "EV Charger Installation", "Wiring or Rewiring", "Lighting or Ceiling Fans", "New Construction", "Not Sure / Need Assessment"]);
+      case 1: return questionStep("What type of electrical work do you need?", "serviceType", [
+        { label: "Panel Upgrade", emoji: "⚡" },
+        { label: "EV Charger Installation", emoji: "🔌" },
+        { label: "Wiring or Rewiring", emoji: "🔧" },
+        { label: "Lighting or Ceiling Fans", emoji: "💡" },
+        { label: "New Construction", emoji: "🏗️" },
+        { label: "Not Sure / Need Assessment", emoji: "🤔" }
+      ]);
       case 2: return questionStep("What best describes your situation?", "situation",
         ["Flickering lights or dead outlets", "Adding new circuits or outlets", "Need more electrical capacity", "Planning a remodel or new build", "Just need an inspection"]);
       case 3: return questionStep("Are you the homeowner?", "isHomeowner", ["Yes", "No"]);
