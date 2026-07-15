@@ -1,12 +1,13 @@
 # Electrize - demo landing page
 
-Static demo landing page for an electrical contractor, built by Mindframe Media.
-Multi-step free-estimate form (9 steps) with a thank-you page. Demo build:
-the form validates and routes to the thank-you page; no data is captured or sent.
-Images are neutral placeholders and testimonials are samples, both meant to be
-swapped for the client's real photos and reviews.
+Prospect-facing demo landing page for Electrize (electrical contractor, Torrance CA),
+built by Mindframe Media. Static site: landing page + 9-step estimate form + thank-you
+page. Demo mode - the form validates and routes to the thank-you page; no data is
+captured or sent. See HANDOFF.md for full details, deploy steps, and open items.
 
 - `index.html` - landing page
 - `thank-you.html` - post-submit thank-you page
-- `form.js` - the 9-step estimate wizard + testimonials
+- `form.js` - 9-step estimate wizard + testimonials
 - `index.css` - compiled styles
+- `assets/img/` - stock photos (Pexels, free license)
+- `HANDOFF.md` - full handoff / how to continue
