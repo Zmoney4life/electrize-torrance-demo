@@ -17,19 +17,32 @@
   .py-12{padding-top:3rem;padding-bottom:3rem}
   .px-7{padding-left:1.75rem;padding-right:1.75rem}.mt-6{margin-top:1.5rem}
   .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
+  .nav-links{ display:none; }
+  @media (min-width:900px){ .nav-links{ display:flex; align-items:center; gap:2.25rem; } }
+  .navlink{ position:relative; font-size:.9rem; font-weight:500; color:#4b5563; transition:color .2s; }
+  .navlink:hover{ color:#1a1a1a; }
+  .navlink::after{ content:""; position:absolute; left:0; bottom:-5px; height:2px; width:0; background:#2563eb; transition:width .3s; }
+  .navlink:hover::after{ width:100%; }
 </style>
 </head>
 <body class="fs-unmask-airo-app-builder">
 <div class="min-h-screen bg-background flex flex-col">
   <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
     <div class="container mx-auto px-4">
-      <div class="flex h-20 items-center justify-center">
-        <a href="index.html" class="flex items-center gap-2">
+      <div class="flex h-20 items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
           <span class="flex items-center justify-center w-9 h-9 rounded-lg" style="background:#2563eb">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ebad25" stroke="#ebad25" stroke-width="1.5" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
           </span>
           <span class="wordmark text-2xl text-[#1a1a1a]">Electrize</span>
         </a>
+        <nav class="nav-links">
+          <a href="index.html#services" class="navlink">Services</a>
+          <a href="index.html#projects" class="navlink">Projects</a>
+          <a href="index.html#about" class="navlink">About</a>
+          <a href="index.html#contact" class="navlink">Contact</a>
+        </nav>
+        <a href="index.html" class="inline-flex items-center px-5 py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90 shrink-0" style="background:#2563eb">Free Estimate</a>
       </div>
     </div>
   </header>

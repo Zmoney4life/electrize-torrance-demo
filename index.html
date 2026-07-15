@@ -11,6 +11,7 @@
   :root{ --font-heading:'Inter',system-ui,-apple-system,sans-serif; --font-sans:'Inter',system-ui,-apple-system,sans-serif; }
   html{ scroll-behavior:smooth; }
   body{ font-family:var(--font-sans); }
+  section[id]{ scroll-margin-top:5.5rem; }
   .fade-in{ animation:fadeIn .25s ease-out; }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
   .ph{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.55rem;
@@ -29,6 +30,13 @@
   .min-h-\[90vh\]{min-height:90vh}.aspect-\[4\/3\]{aspect-ratio:4/3}.w-\[420px\]{width:420px}
   @media (min-width:640px){.sm\:inline-flex{display:inline-flex}}
   @media (min-width:1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:w-\[420px\]{width:420px}}
+  /* top nav */
+  .nav-links{ display:none; }
+  @media (min-width:900px){ .nav-links{ display:flex; align-items:center; gap:2.25rem; } }
+  .navlink{ position:relative; font-size:.9rem; font-weight:500; color:#4b5563; transition:color .2s; }
+  .navlink:hover{ color:#1a1a1a; }
+  .navlink::after{ content:""; position:absolute; left:0; bottom:-5px; height:2px; width:0; background:#2563eb; transition:width .3s; }
+  .navlink:hover::after{ width:100%; }
 </style>
 </head>
 <body class="fs-unmask-airo-app-builder">
@@ -38,13 +46,19 @@
   <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
     <div class="container mx-auto px-4">
       <div class="flex h-20 items-center justify-between">
-        <a href="index.html" class="flex items-center gap-2">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
           <span class="flex items-center justify-center w-9 h-9 rounded-lg" style="background:#2563eb">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ebad25" stroke="#ebad25" stroke-width="1.5" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
           </span>
           <span class="wordmark text-2xl text-[#1a1a1a]">Electrize</span>
         </a>
-        <a href="#estimate-form" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90" style="background:#2563eb">Free Estimate</a>
+        <nav class="nav-links">
+          <a href="#services" class="navlink">Services</a>
+          <a href="#projects" class="navlink">Projects</a>
+          <a href="#about" class="navlink">About</a>
+          <a href="#contact" class="navlink">Contact</a>
+        </nav>
+        <a href="#estimate-form" class="inline-flex items-center px-5 py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90 shrink-0" style="background:#2563eb">Free Estimate</a>
       </div>
     </div>
   </header>
@@ -145,7 +159,7 @@
   </section>
 
   <!-- About -->
-  <section class="py-20" style="background:#f5f5f5">
+  <section id="about" class="py-20" style="background:#f5f5f5">
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="flex flex-col lg:flex-row items-center gap-12">
         <div class="w-full lg:w-1/2">
